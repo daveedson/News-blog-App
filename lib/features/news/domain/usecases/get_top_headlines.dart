@@ -1,4 +1,4 @@
-import '../../../../core/utils/result.dart';
+import '../../../../core/errors/app_exception.dart';
 import '../entities/article.dart';
 import '../repositories/news_repository.dart';
 
@@ -7,5 +7,5 @@ class GetTopHeadlines {
 
   const GetTopHeadlines(this._repository);
 
-  Future<Result<List<Article>>> call() => _repository.getTopHeadlines();
+  Future<(List<Article>?, AppException?)> call() => _repository.getTopHeadlines();
 }

@@ -1,6 +1,6 @@
-import '../../../../core/utils/result.dart';
 import '../entities/article.dart';
+import '../../../../core/errors/app_exception.dart';
 
 abstract class NewsRepository {
-  Future<Result<List<Article>>> getTopHeadlines();
+  Future<(List<Article>?, AppException?)> getTopHeadlines();
 }
