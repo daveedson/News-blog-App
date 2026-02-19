@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../core/constants/app_colors.dart';
 import '../../../../core/utils/formatters.dart';
 import '../viewmodels/news_feed_viewmodel.dart';
 import '../viewmodels/view_mode_viewmodel.dart';
@@ -13,14 +14,6 @@ import 'widgets/short_article_card.dart';
 
 class NewsFeedScreen extends ConsumerWidget {
   const NewsFeedScreen({super.key});
-
-  static const _primaryGradient = LinearGradient(
-    colors: [Color(0xFF6C63FF), Color(0xFF3D8BFF)],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-  );
-
-  static const _accentColor = Color(0xFF6C63FF);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -54,7 +47,7 @@ class NewsFeedScreen extends ConsumerWidget {
                             width: 46,
                             height: 46,
                             decoration: BoxDecoration(
-                              gradient: _primaryGradient,
+                              gradient: AppColors.primaryGradient,
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: const Icon(
@@ -66,7 +59,6 @@ class NewsFeedScreen extends ConsumerWidget {
                         ),
                       ),
                       const SizedBox(width: 12),
-                      // Greeting
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -123,12 +115,11 @@ class NewsFeedScreen extends ConsumerWidget {
                         ),
                       ),
                       const SizedBox(width: 12),
-                      // Search button
                       Container(
                         width: 48,
                         height: 48,
                         decoration: BoxDecoration(
-                          gradient: _primaryGradient,
+                          gradient: AppColors.primaryGradient,
                           borderRadius: BorderRadius.circular(14),
                         ),
                         child: Padding(
@@ -172,7 +163,6 @@ class NewsFeedScreen extends ConsumerWidget {
                     ),
                   )
                 else ...[
-                  // ── Featured articles ─────────────────────────────────
                   SizedBox(
                     height: 278,
                     child: ListView.builder(
@@ -201,7 +191,6 @@ class NewsFeedScreen extends ConsumerWidget {
 
                   const SizedBox(height: 20),
 
-                  // ── Short For You header ──────────────────────────────
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(
@@ -221,7 +210,7 @@ class NewsFeedScreen extends ConsumerWidget {
                             'View All',
                             style: TextStyle(
                               fontSize: 13,
-                              color: _accentColor,
+                              color: AppColors.accent,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -261,18 +250,17 @@ class NewsFeedScreen extends ConsumerWidget {
         ),
       ),
 
-     
       floatingActionButton: GestureDetector(
         onTap: () => ref.read(viewModeProvider.notifier).toggle(),
         child: Container(
           width: 56,
           height: 56,
           decoration: BoxDecoration(
-            gradient: _primaryGradient,
+            gradient: AppColors.primaryGradient,
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
-                color: _accentColor.withValues(alpha: 0.4),
+                color: AppColors.accent.withValues(alpha: 0.4),
                 blurRadius: 12,
                 offset: const Offset(0, 4),
               ),
@@ -296,11 +284,10 @@ class NewsFeedScreen extends ConsumerWidget {
         ),
       ),
 
-      
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
-        selectedItemColor: _accentColor,
+        selectedItemColor: AppColors.accent,
         unselectedItemColor: Colors.grey.shade400,
         showSelectedLabels: false,
         showUnselectedLabels: false,

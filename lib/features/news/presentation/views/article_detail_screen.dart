@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../core/constants/app_colors.dart';
 import '../../../../core/utils/formatters.dart';
 import '../../domain/entities/article.dart';
 import 'widgets/overlay_button.dart';
@@ -18,7 +19,7 @@ class ArticleDetailScreen extends StatelessWidget {
     const overlap = 30.0;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF2F2F7),
+      backgroundColor: AppColors.backgroundGrey,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,7 +88,7 @@ class ArticleDetailScreen extends StatelessWidget {
               offset: const Offset(0, -overlap),
               child: Container(
                 decoration: const BoxDecoration(
-                  color: Color(0xFFF2F2F7),
+                  color: AppColors.backgroundGrey,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
                 ),
                 padding: const EdgeInsets.fromLTRB(20, 28, 20, 60),
@@ -100,7 +101,7 @@ class ArticleDetailScreen extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.w900,
-                        color: Color(0xFF1A1A2E),
+                        color: AppColors.titleDark,
                         height: 1.25,
                         letterSpacing: -0.3,
                       ),
