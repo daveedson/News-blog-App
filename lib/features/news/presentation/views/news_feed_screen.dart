@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../core/utils/formatters.dart';
 import '../viewmodels/news_feed_viewmodel.dart';
 import '../viewmodels/view_mode_viewmodel.dart';
 import 'widgets/article_grid_item.dart';
@@ -21,34 +22,6 @@ class NewsFeedScreen extends ConsumerWidget {
 
   static const _accentColor = Color(0xFF6C63FF);
 
-  String _formattedDate() {
-    final now = DateTime.now();
-    const days = [
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday',
-      'Sunday',
-    ];
-    const months = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ];
-    return '${days[now.weekday - 1]}, ${now.day} ${months[now.month - 1]}';
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final newsAsync = ref.watch(newsFeedViewModelProvider);
@@ -66,12 +39,10 @@ class NewsFeedScreen extends ConsumerWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // ── Header ──────────────────────────────────────────────
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                   child: Row(
                     children: [
-                      // Avatar
                       ClipRRect(
                         borderRadius: BorderRadius.circular(12),
                         child: Image.asset(
@@ -110,7 +81,7 @@ class NewsFeedScreen extends ConsumerWidget {
                             ),
                             const SizedBox(height: 2),
                             Text(
-                              _formattedDate(),
+                              todayLabel(),
                               style: TextStyle(
                                 fontSize: 13,
                                 color: Colors.grey.shade500,
@@ -124,8 +95,6 @@ class NewsFeedScreen extends ConsumerWidget {
                 ),
 
                 const SizedBox(height: 18),
-
-                // ── Search bar + search button ───────────────────────────
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Row(
@@ -179,9 +148,7 @@ class NewsFeedScreen extends ConsumerWidget {
 
                 const SizedBox(height: 22),
 
-                // ── Content ─────────────────────────────────────────────
                 if (isGrid)
-                  // Grid view: all articles
                   Expanded(
                     child: GridView.builder(
                       padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
@@ -264,8 +231,6 @@ class NewsFeedScreen extends ConsumerWidget {
                   ),
 
                   const SizedBox(height: 14),
-
-                  // ── Short For You cards ───────────────────────────────
                   SizedBox(
                     height: 180,
                     child: ListView.builder(
@@ -296,7 +261,7 @@ class NewsFeedScreen extends ConsumerWidget {
         ),
       ),
 
-      // ── Toggle FAB ───────────────────────────────────────────────────
+     
       floatingActionButton: GestureDetector(
         onTap: () => ref.read(viewModeProvider.notifier).toggle(),
         child: Container(
@@ -331,7 +296,7 @@ class NewsFeedScreen extends ConsumerWidget {
         ),
       ),
 
-      // ── Bottom Navigation Bar ─────────────────────────────────────────
+      
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,

@@ -1,3 +1,16 @@
+String todayLabel() {
+  final now = DateTime.now();
+  const days = [
+    'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+    'Friday', 'Saturday', 'Sunday',
+  ];
+  const months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December',
+  ];
+  return '${days[now.weekday - 1]}, ${now.day} ${months[now.month - 1]}';
+}
+
 String formatArticleDate(String publishedAt) {
   try {
     final dt = DateTime.parse(publishedAt);
